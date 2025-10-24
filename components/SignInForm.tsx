@@ -70,7 +70,7 @@ export default function SignInForm() {
           setTimeout(() => document.body.removeChild(img), 1000);
         }, Math.random() * 500 + 100);
 
-        router.push("/dashboard");
+        router.push("/");
       } else {
         setAuthError("Sign-in could not be completed. Please try again.");
       }
