@@ -1,31 +1,52 @@
-# FileNest
+# 🚀 FileNest - Secure Cloud Storage for Everyone
 
-A full-stack cloud storage platform built with Next.js 15, featuring real-time file management, user authentication, and a sleek modern interface.
+<div align="center">
+  <img src="./public/Dashboard.png" alt="FileNest Dashboard" width="800"/>
+  <br/>
+  <p><em>A full-stack cloud storage platform built with Next.js 15, featuring real-time file management, user authentication, and a sleek modern interface.</em></p>
 
-![ss](./public/Dashboard.png)
+  ![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript)
+  ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css)
+  ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql)
+  ![Clerk](https://img.shields.io/badge/Clerk-6B46C1?style=for-the-badge&logo=clerk)
+  ![ImageKit](https://img.shields.io/badge/ImageKit-0093E5?style=for-the-badge)
+  ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer)
+  ![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js)
 
-## Features
+  <h3>
+    <a href="#-getting-started">🚀 Get Started</a> •
+    <a href="#-features">✨ Features</a> •
+    <a href="#-tech-stack">🛠️ Tech Stack</a> •
+    <a href="#-api-endpoints">📡 API</a>
+  </h3>
+</div>
 
-### Core Functionality
-- **Secure Authentication** - Powered by Clerk with email verification and OTP support
-- **File Management** - Upload, organize, star, and delete files with drag-and-drop support
-- **Folder Structure** - Create and navigate through nested folder hierarchies
-- **Storage Management** - 150MB per user limit with real-time usage tracking
-- **Trash System** - Soft delete with restore functionality
+## ✨ Features
 
-### User Experience
-- **Modern UI** - Clean, minimal design inspired by Apple's aesthetics
-- **Responsive Design** - Works seamlessly across desktop, tablet, and mobile
-- **Real-time Updates** - Instant feedback for all file operations
-- **Smart Validation** - Pre-upload file size and type validation
-- **Progress Tracking** - Visual upload progress with error handling
+### 🎯 Core Functionality
+- **🔐 Secure Authentication** - Powered by Clerk with email verification and OTP support
+- **📁 File Management** - Upload, organize, star, and delete files with drag-and-drop support
+- **📂 Folder Structure** - Create and navigate through nested folder hierarchies
+- **💾 Storage Management** - 150MB per user limit with real-time usage tracking
+- **🗑️ Trash System** - Soft delete with restore functionality
 
-### Technical Features
-- **Type-Safe** - Full TypeScript implementation
-- **Database Integration** - PostgreSQL with Drizzle ORM
-- **Cloud Storage** - Quadruple redundancy with 3 ImageKit accounts + Cloudinary fallback
-- **Performance** - Optimized with Next.js 15 and Turbopack
-- **Security** - Protected API routes with user authorization
+### 🎨 User Experience
+- **🎭 Modern UI** - Clean, minimal design inspired by Apple's aesthetics
+- **📱 Responsive Design** - Works seamlessly across desktop, tablet, and mobile
+- **⚡ Real-time Updates** - Instant feedback for all file operations
+- **🧠 Smart Validation** - Pre-upload file size and type validation
+- **📊 Progress Tracking** - Visual upload progress with error handling
+
+### 🛠️ Technical Features
+- **🔒 Type-Safe** - Full TypeScript implementation
+- **🗄️ Database Integration** - PostgreSQL with Drizzle ORM
+- **☁️ Cloud Storage** - Quadruple redundancy with ImageKit + Cloudinary fallback
+- **🚀 Performance** - Optimized with Next.js 15 and Turbopack
+- **🛡️ Security** - Protected API routes with user authorization
+- **🎨 File Type Colors** - Different colors for PDF, images, videos, and documents
+- **📧 Contact System** - Email notifications with IP tracking
+- **🔍 Login Monitoring** - Silent user activity tracking (admin only)
 
 ## Project Structure
 
@@ -60,13 +81,13 @@ filenest/
 - **Node.js** (v18 or higher)
 - **pnpm** (recommended) or npm
 - **PostgreSQL** database
-- **ImageKit** (3 accounts) + **Cloudinary** accounts for redundant file storage
+- **ImageKit** + **Cloudinary** accounts for redundant file storage
 - **Clerk** account for authentication
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/FileNest.git
+git clone https://github.com/CodewithEvilxd/FileNest.git
 cd FileNest
 ```
 
@@ -152,6 +173,8 @@ Visit [http://localhost:3000](http://localhost:3000) to see your application run
 - **[Tailwind CSS](https://tailwindcss.com/)** - Styling framework
 - **[shadcn/ui](https://ui.shadcn.com/)** - Component library
 - **[Lucide React](https://lucide.dev/)** - Icon library
+- **[Framer Motion](https://www.framer.com/motion/)** - Animation library
+- **[Three.js](https://threejs.org/)** - 3D graphics library
 
 ### Backend & Database
 - **[Drizzle ORM](https://orm.drizzle.team/)** - Type-safe database toolkit
@@ -160,7 +183,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your application run
 
 ### Authentication & Storage
 - **[Clerk](https://clerk.com/)** - User authentication and management
-- **[ImageKit](https://imagekit.io/)** - Primary cloud storage (3 accounts for redundancy)
+- **[ImageKit](https://imagekit.io/)** - Primary cloud storage with redundancy
 - **[Cloudinary](https://cloudinary.com/)** - Backup cloud storage
 
 ### Development Tools
@@ -203,14 +226,35 @@ pnpm db:studio    # Open Drizzle Studio (database GUI)
 - `GET /api/imagekit-auth` - Get ImageKit authentication token
 
 
-## Contributing
+## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+We welcome contributions! Here's how you can help:
 
-## License
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Commit** your changes: `git commit -m 'Add amazing feature'`
+4. **Push** to the branch: `git push origin feature/amazing-feature`
+5. **Open** a Pull Request
+
+### Development Guidelines
+- Follow TypeScript best practices
+- Write meaningful commit messages
+- Test your changes thoroughly
+- Update documentation as needed
+
+## 📞 Contact & Support
+
+- **Email**: codewithevilxd@gmail.com
+- **Discord**: raj.dev_
+- **GitHub**: [@CodewithEvilxd](https://github.com/CodewithEvilxd)
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  <p><strong>Built with ❤️ by <a href="https://github.com/CodewithEvilxd">CodewithEvilxd</a></strong></p>
+  <p>Star ⭐ this repo if you found it helpful!</p>
+</div>
