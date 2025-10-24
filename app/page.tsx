@@ -1,4 +1,6 @@
 
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -11,36 +13,211 @@ import {
   Shield,
   Star,
   Zap,
+  Sparkles,
+  FileText,
+  Users,
+  Smartphone,
 } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import * as THREE from "three";
 
 export default function Home() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    // Three.js setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // Create floating particles
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 100;
+    const positions = new Float32Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 20;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({
+      color: 0x3b82f6,
+      size: 0.02,
+      transparent: true,
+      opacity: 0.6,
+    });
+
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particles);
+
+    camera.position.z = 5;
+
+    // Animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+      particles.rotation.x += 0.001;
+      particles.rotation.y += 0.002;
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // GSAP animations with proper targeting
+    const tl = gsap.timeline();
+
+    // Wait for DOM to be ready and elements to exist
+    const checkElements = () => {
+      const title = document.querySelector('.hero-title');
+      const subtitle = document.querySelector('.hero-subtitle');
+      const buttons = document.querySelector('.hero-buttons');
+      const features = document.querySelector('.hero-features');
+
+      if (title && subtitle && buttons && features) {
+        tl.fromTo(title, {
+          opacity: 0,
+          y: 50,
+          scale: 0.8
+        }, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out"
+        })
+        .fromTo(subtitle, {
+          opacity: 0,
+          y: 30
+        }, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out"
+        }, "-=0.8")
+        .fromTo(buttons, {
+          opacity: 0,
+          y: 20
+        }, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out"
+        }, "-=0.6")
+        .fromTo(features, {
+          opacity: 0,
+          y: 20
+        }, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out"
+        }, "-=0.4");
+      } else {
+        // Retry after a short delay if elements not found
+        setTimeout(checkElements, 50);
+      }
+    };
+
+    setTimeout(checkElements, 100);
+
+    // Mouse interaction
+    const handleMouseMove = (event: MouseEvent) => {
+      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      gsap.to(particles.rotation, {
+        x: mouseY * 0.1,
+        y: mouseX * 0.1,
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      renderer.dispose();
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-blue-50 text-black relative overflow-hidden">
+      {/* Three.js Canvas Background */}
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{ mixBlendMode: 'multiply' }}
+      />
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b-2 border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 md:px-8">
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex justify-between items-center h-16 md:h-20">
-            <div className="flex items-center gap-2">
-              <CloudUpload className="h-6 w-6 md:h-7 md:w-7" />
-              <span className="text-lg md:text-xl tracking-wide font-semibold">FileNest</span>
-            </div>
+            <motion.div
+              className="flex items-center gap-3"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative">
+                <CloudUpload className="h-7 w-7 md:h-8 md:w-8 text-blue-600" />
+                <motion.div
+                  className="absolute -top-1 -right-1 h-3 w-3 bg-green-500 rounded-full"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </div>
+              <span className="text-xl md:text-2xl tracking-wide font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                FileNest
+              </span>
+            </motion.div>
             <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-              <a href="#features" className="text-gray-500 hover:text-black transition-colors">Features</a>
-              <a href="#pricing" className="text-gray-500 hover:text-black transition-colors">Pricing</a>
-              <a href="#security" className="text-gray-500 hover:text-black transition-colors">Security</a>
-              <Link href="/login">
-                <Button className="bg-black hover:bg-gray-900 text-white rounded-full px-5 py-2 text-sm font-medium">
-                  Get started
-                </Button>
-              </Link>
+              <motion.a
+                href="#features"
+                className="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                Features
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
+              </motion.a>
+              <motion.a
+                href="#pricing"
+                className="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                Pricing
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
+              </motion.a>
+              <motion.a
+                href="#security"
+                className="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                whileHover={{ scale: 1.05 }}
+              >
+                Security
+                <span className="absolute -bottom-1 left-0 w-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
+              </motion.a>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/sign-in">
+                  <Button className="bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6 py-2 text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300">
+                    Get started
+                  </Button>
+                </Link>
+              </motion.div>
             </div>
             <div className="md:hidden">
-              <Link href="/login">
-                <Button className="bg-black hover:bg-gray-900 text-white rounded-full px-4 py-2 text-xs font-medium">
-                  Start
-                </Button>
-              </Link>
+              <motion.div whileTap={{ scale: 0.95 }}>
+                <Link href="/sign-in">
+                  <Button className="bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-4 py-2 text-xs font-medium shadow-lg">
+                    Start
+                  </Button>
+                </Link>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -56,11 +233,16 @@ export default function Home() {
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" /> Free 150 MB • No credit card needed
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-none tracking-tight mb-6">
-            Your fast, private cloud storage{" "} <br className="hidden md:block" /><span className="text-gray-400">anytime, anywhere.</span>
+            Store, share, and{" "}
+            <span className="bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent" style={{fontFamily: 'cursive'}}>
+              collaborate
+            </span>
+            <br className="hidden md:block" />
+            <span className="text-gray-600" style={{fontFamily: 'cursive'}}>with confidence.</span>
           </h1>
           <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed mb-8 md:mb-10">
-            FileNest is the ultra-clean, privacy-first home for your documents, photos, and projects.
-            Built for speed, designed for clarity, and crafted for teams and creators who value focus.
+            FileNest delivers enterprise-grade security with consumer-friendly simplicity.
+            Your files are encrypted, backed up, and accessible everywhere — all in one beautiful interface.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Link href="/login" className="w-full sm:w-auto">
@@ -83,17 +265,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social proof */}
-      <section className="py-10 md:py-12 border-t-2 border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 md:px-8">
-          <p className="text-center text-xs md:text-sm text-gray-600 font-medium mb-6">Trusted by makers and teams at</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-10 items-center opacity-70">
-            {['Acme', 'Tempo', 'Nova', 'Apex', 'Atto', 'Lumina'].map((brand) => (
-              <div key={brand} className="text-center text-sm md:text-base tracking-wide text-gray-400">{brand}</div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Features */}
       <section id="features" className="py-24 md:py-32">
@@ -273,10 +444,11 @@ export default function Home() {
       <footer className="border-t-2 border-gray-100 py-10">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <span className="text-sm font-medium tracking-wide">FileNest</span>
-            <div className="flex items-center gap-6 text-xs text-gray-600 font-normal">
-              <a href="#" className="hover:text-black transition-colors">Privacy</a>
-              <a href="#" className="hover:text-black transition-colors">Terms</a>
+            <span className="text-2xl font-bold cursive-font text-primary">FileNest</span>
+            <div className="flex items-center gap-6 text-sm text-gray-600 font-bold cursive-font">
+              <Link href="/privacy" className="hover:text-black transition-colors">Privacy</Link>
+              <Link href="/terms" className="hover:text-black transition-colors">Terms</Link>
+              <Link href="/contact" className="hover:text-black transition-colors">Contact</Link>
               <span>© {new Date().getFullYear()}</span>
             </div>
           </div>

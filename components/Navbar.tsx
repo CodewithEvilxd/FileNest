@@ -1,7 +1,7 @@
 "use client";
 
 import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
-import { ChevronDown, CloudUpload, Menu, User, X } from "lucide-react";
+import { ChevronDown, CloudUpload, Menu, Moon, Sun, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -33,6 +33,7 @@ export default function Navbar({ user }: NavbarProps) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Check if we're on the dashboard page
@@ -127,6 +128,22 @@ export default function Navbar({ user }: NavbarProps) {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const toggleDarkMode = () => {
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+
+    // Apply dark mode to the entire document
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+      document.body.style.backgroundColor = '#000000';
+      document.body.style.color = '#ffffff';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.style.backgroundColor = '';
+      document.body.style.color = '';
+    }
+  };
+
   return (
     <header
       className={`bg-background border-b sticky top-0 z-50 transition-shadow ${isScrolled ? "shadow-sm" : ""}`}
@@ -141,6 +158,20 @@ export default function Navbar({ user }: NavbarProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-4 items-center">
+            {/* Dark Mode Toggle Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleDarkMode}
+              className="w-9 h-9 p-0"
+            >
+              {isDarkMode ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </Button>
+
             {/* Show these buttons when user is signed out */}
             <SignedOut>
               <Link href="/sign-in">

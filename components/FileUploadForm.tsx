@@ -58,8 +58,6 @@ export default function FileUploadForm({
         </Button>
       </div>
 
-      {/* Storage Usage Indicator */}
-      <StorageIndicator onStorageUpdate={fileUpload.handleStorageUpdate} />
 
       {/* File Drop Zone */}
       <FileDropZone

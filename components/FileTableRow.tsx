@@ -63,7 +63,7 @@ export default function FileTableRow({
                 {file.name}
               </span>
               {file.isStarred && (
-                <Star className="h-3.5 w-3.5 text-yellow-500 fill-current flex-shrink-0" />
+                <Star className="h-3.5 w-3.5 text-yellow-500 fill-current shrink-0" />
               )}
             </div>
             <div className="text-xs text-muted-foreground sm:hidden mt-0.5">

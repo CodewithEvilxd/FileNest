@@ -70,7 +70,7 @@ export default function FileSection({ userId }: FileSectionProps) {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink 
+                <BreadcrumbLink
                   onClick={() => handleFolderChange(null, [])}
                   className="cursor-pointer"
                 >
@@ -85,7 +85,7 @@ export default function FileSection({ userId }: FileSectionProps) {
                     {index === folderPath.length - 1 ? (
                       <BreadcrumbPage>{folder.name}</BreadcrumbPage>
                     ) : (
-                      <BreadcrumbLink 
+                      <BreadcrumbLink
                         onClick={() => handleFolderChange(folder.id, folderPath.slice(0, index + 1))}
                         className="cursor-pointer"
                       >

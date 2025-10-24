@@ -40,12 +40,12 @@ export default async function Dashboard() {
         />
       </main>
 
-      <footer className="bg-default-50 border-t border-default-200 py-6">
+      <footer className="bg-default-50 border-t border-default-200 py-8">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <CloudUpload className="h-5 w-5 text-primary" />
-              <h2 className="text-lg font-bold">FileNest</h2>
+            <div className="flex items-center gap-3 mb-4 md:mb-0">
+              <CloudUpload className="h-6 w-6 text-primary" />
+              <h2 className="text-2xl font-bold cursive-font text-primary">FileNest</h2>
             </div>
             <p className="text-default-500 text-sm">
               &copy; {new Date().getFullYear()} FileNest
