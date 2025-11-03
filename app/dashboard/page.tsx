@@ -25,7 +25,7 @@ export default async function Dashboard() {
     : null;
 
   return (
-    <div className="min-h-screen flex flex-col bg-default-50">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navbar user={serializedUser} />
 
       <main className="flex-1 container mx-auto py-8 px-6">
@@ -40,14 +40,14 @@ export default async function Dashboard() {
         />
       </main>
 
-      <footer className="bg-default-50 border-t border-default-200 py-8">
+      <footer className="bg-background border-t border-gray-200 dark:border-gray-800 py-8">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center gap-3 mb-4 md:mb-0">
               <CloudUpload className="h-6 w-6 text-primary" />
               <h2 className="text-2xl font-bold cursive-font text-primary">FileNest</h2>
             </div>
-            <p className="text-default-500 text-sm">
+            <p className="text-gray-600 dark:text-gray-300 text-sm">
               &copy; {new Date().getFullYear()} FileNest
             </p>
           </div>

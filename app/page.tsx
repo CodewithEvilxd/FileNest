@@ -3,6 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   ArrowRight,
   CheckCircle2,
@@ -148,7 +149,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-blue-50 text-black relative overflow-hidden">
+    <div className="relative">
       {/* Three.js Canvas Background */}
       <canvas
         ref={canvasRef}
@@ -156,7 +157,7 @@ export default function Home() {
         style={{ mixBlendMode: 'multiply' }}
       />
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm">
+      <nav className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-slate-700 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex justify-between items-center h-16 md:h-20">
             <motion.div
@@ -180,7 +181,7 @@ export default function Home() {
             <div className="hidden md:flex items-center gap-8 text-sm font-medium">
               <motion.a
                 href="#features"
-                className="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
               >
                 Features
@@ -188,7 +189,7 @@ export default function Home() {
               </motion.a>
               <motion.a
                 href="#pricing"
-                className="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
               >
                 Pricing
@@ -196,7 +197,7 @@ export default function Home() {
               </motion.a>
               <motion.a
                 href="#security"
-                className="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group"
                 whileHover={{ scale: 1.05 }}
               >
                 Security
@@ -209,6 +210,7 @@ export default function Home() {
                   </Button>
                 </Link>
               </motion.div>
+              <ThemeToggle />
             </div>
             <div className="md:hidden">
               <motion.div whileTap={{ scale: 0.95 }}>
@@ -229,8 +231,8 @@ export default function Home() {
           <div className="mx-auto max-w-6xl h-px bg-linear-to-r from-transparent via-gray-200 to-transparent" />
         </div>
         <div className="max-w-6xl mx-auto px-6 md:px-8 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border-2 border-gray-200 px-3 py-1 text-xs md:text-sm font-medium text-gray-600 mb-6">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-black" /> Free 150 MB • No credit card needed
+          <div className="inline-flex items-center gap-2 rounded-full border-2 border-gray-200 dark:border-gray-700 px-3 py-1 text-xs md:text-sm font-medium text-gray-600 dark:text-gray-300 mb-6">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-black dark:bg-gray-900" /> Free 150 MB • No credit card needed
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-none tracking-tight mb-6">
             Store, share, and{" "}
@@ -238,26 +240,26 @@ export default function Home() {
               collaborate
             </span>
             <br className="hidden md:block" />
-            <span className="text-gray-600" style={{fontFamily: 'cursive'}}>with confidence.</span>
+            <span className="text-gray-600 dark:text-gray-300" style={{fontFamily: 'cursive'}}>with confidence.</span>
           </h1>
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed mb-8 md:mb-10">
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-normal leading-relaxed mb-8 md:mb-10">
             FileNest delivers enterprise-grade security with consumer-friendly simplicity.
             Your files are encrypted, backed up, and accessible everywhere — all in one beautiful interface.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Link href="/login" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto bg-black hover:bg-gray-900 text-white rounded-full px-6 md:px-8 py-3 text-sm md:text-base font-medium transition-all duration-300 hover:scale-[1.02]">
+              <Button className="w-full sm:w-auto bg-black dark:bg-gray-900 hover:bg-gray-900 dark:hover:bg-gray-800 text-white rounded-full px-6 md:px-8 py-3 text-sm md:text-base font-medium transition-all duration-300 hover:scale-[1.02]">
                 Get started - it&apos;s free
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <a href="#pricing" className="w-full sm:w-auto">
-              <Button variant="outline" className="w-full sm:w-auto border-gray-200 hover:bg-gray-50 text-black rounded-full px-6 md:px-8 py-3 text-sm md:text-base font-medium">
+              <Button variant="outline" className="w-full sm:w-auto border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 text-black dark:text-white rounded-full px-6 md:px-8 py-3 text-sm md:text-base font-medium">
                 View pricing
               </Button>
             </a>
           </div>
-          <div className="mt-6 flex items-center justify-center gap-6 text-xs md:text-sm text-gray-600 font-medium">
+          <div className="mt-6 flex items-center justify-center gap-6 text-xs md:text-sm text-gray-600 dark:text-gray-300 font-medium">
             <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> End-to-end privacy</div>
             <div className="flex items-center gap-2"><Zap className="h-4 w-4" /> Blazing fast</div>
             <div className="flex items-center gap-2"><Globe className="h-4 w-4" /> Works everywhere</div>
@@ -271,7 +273,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4">Designed to be invisible</h2>
-            <p className="text-gray-600 font-normal max-w-2xl mx-auto">A calm workspace that gets out of the way — so you can focus on work that matters.</p>
+            <p className="text-gray-600 dark:text-gray-300 font-normal max-w-2xl mx-auto">A calm workspace that gets out of the way — so you can focus on work that matters.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 md:gap-10">
             {[
@@ -282,10 +284,10 @@ export default function Home() {
               { icon: <Globe className="h-5 w-5" />, title: 'Universal access', desc: 'Seamless experience across laptop, tablet, and phone — nothing to install.' },
               { icon: <Star className="h-5 w-5" />, title: 'Polished experience', desc: 'Minimal UI, smooth interactions, and delightful details at every step.' },
             ].map((f, i) => (
-              <div key={i} className="group rounded-2xl border-2 border-gray-100 p-6 md:p-8 hover:shadow-sm transition-shadow">
-                <div className="inline-flex items-center justify-center rounded-full border-2 border-gray-200 h-10 w-10 mb-4">{f.icon}</div>
+              <div key={i} className="group rounded-2xl border-2 border-gray-100 dark:border-gray-800 p-6 md:p-8 hover:shadow-sm transition-shadow">
+                <div className="inline-flex items-center justify-center rounded-full border-2 border-gray-200 dark:border-gray-700 h-10 w-10 mb-4">{f.icon}</div>
                 <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-600 font-normal leading-relaxed">{f.desc}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 font-normal leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -293,7 +295,7 @@ export default function Home() {
       </section>
 
       {/* How it works */}
-      <section className="py-20 md:py-24 border-t-2 border-gray-100">
+      <section className="py-20 md:py-24 border-t-2 border-gray-100 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {[
@@ -301,10 +303,10 @@ export default function Home() {
               { step: '2', title: 'Upload anything', desc: 'Drag & drop or use the uploader — we optimize everything automatically.' },
               { step: '3', title: 'Share when needed', desc: 'Invite teammates or share links with precise control.' },
             ].map((s) => (
-              <div key={s.step} className="rounded-2xl border-2 border-gray-100 p-6 md:p-8">
+              <div key={s.step} className="rounded-2xl border-2 border-gray-100 dark:border-gray-800 p-6 md:p-8">
                 <div className="text-gray-500 text-sm font-medium mb-2">Step {s.step}</div>
                 <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
-                <p className="text-sm text-gray-600 font-normal leading-relaxed">{s.desc}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 font-normal leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -314,9 +316,9 @@ export default function Home() {
       {/* Security highlight */}
       <section id="security" className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
-          <Card className="rounded-2xl border-gray-100">
+          <Card className="rounded-2xl border-gray-100 dark:border-gray-800">
             <CardHeader className="pb-2">
-              <div className="flex items-center gap-2 text-sm text-gray-600 font-medium">
+              <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 font-medium">
                 <Shield className="h-4 w-4" /> Security & Privacy
               </div>
             </CardHeader>
@@ -327,9 +329,9 @@ export default function Home() {
                   { title: 'Granular permissions', desc: 'Role-based access and expiring links keep your data controlled.' },
                   { title: 'Reliable by design', desc: 'Backed by a modern, resilient infrastructure with daily backups.' },
                 ].map((i, idx) => (
-                  <div key={idx} className="rounded-xl border-2 border-gray-100 p-5">
+                  <div key={idx} className="rounded-xl border-2 border-gray-100 dark:border-gray-800 p-5">
                     <h4 className="text-base font-semibold mb-1">{i.title}</h4>
-                    <p className="text-sm text-gray-600 font-normal">{i.desc}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 font-normal">{i.desc}</p>
                   </div>
                 ))}
               </div>
@@ -339,22 +341,22 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-24 md:py-28 border-t-2 border-gray-100">
+      <section id="pricing" className="py-24 md:py-28 border-t-2 border-gray-100 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-3">Clear, simple pricing</h2>
-            <p className="text-gray-600 font-normal">Start free. Upgrade when you need more space and control.</p>
+            <p className="text-gray-600 dark:text-gray-300 font-normal">Start free. Upgrade when you need more space and control.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            <Card className="rounded-2xl border-gray-100">
+            <Card className="rounded-2xl border-gray-100 dark:border-gray-800">
               <CardHeader>
                 <h3 className="text-xl font-semibold">Personal</h3>
-                <p className="text-sm text-gray-600 font-normal">For individuals and creators</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 font-normal">For individuals and creators</p>
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-2 mb-4">
                   <span className="text-4xl font-semibold">Free</span>
-                  <span className="text-gray-600 text-sm font-normal">forever</span>
+                  <span className="text-gray-600 dark:text-gray-300 text-sm font-normal">forever</span>
                 </div>
                 <ul className="space-y-2 text-sm text-gray-700 font-normal mb-6">
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> 150 MB storage</li>
@@ -362,20 +364,20 @@ export default function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> Fast uploads</li>
                 </ul>
                 <Link href="/login">
-                  <Button className="w-full bg-black hover:bg-gray-900 text-white rounded-full font-medium">Get started</Button>
+                  <Button className="w-full bg-black dark:bg-gray-900 hover:bg-gray-900 dark:hover:bg-gray-800 text-white rounded-full font-medium">Get started</Button>
                 </Link>
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border-gray-100">
+            <Card className="rounded-2xl border-gray-100 dark:border-gray-800">
               <CardHeader>
                 <h3 className="text-xl font-semibold">Pro</h3>
-                <p className="text-sm text-gray-600 font-normal">For teams and power users</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 font-normal">For teams and power users</p>
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-2 mb-4">
                   <span className="text-4xl font-semibold">$8</span>
-                  <span className="text-gray-600 text-sm font-normal">/month</span>
+                  <span className="text-gray-600 dark:text-gray-300 text-sm font-normal">/month</span>
                 </div>
                 <ul className="space-y-2 text-sm text-gray-700 font-normal mb-6">
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> 50 GB storage</li>
@@ -383,7 +385,7 @@ export default function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> Priority support</li>
                 </ul>
                 <Link href="/login">
-                  <Button variant="outline" className="w-full border-gray-200 rounded-full font-medium">Start 14‑day trial</Button>
+                  <Button variant="outline" className="w-full border-gray-200 dark:border-gray-700 rounded-full font-medium">Start 14‑day trial</Button>
                 </Link>
               </CardContent>
             </Card>
@@ -400,8 +402,8 @@ export default function Home() {
               { name: 'Jon', role: 'Engineer', quote: 'Blazing fast and predictable. Sharing links finally feels trustworthy.' },
               { name: 'Elena', role: 'Producer', quote: 'Our team moved in a day. The interface is so clean my clients compliment it.' },
             ].map((t) => (
-              <div key={t.name} className="rounded-2xl border-2 border-gray-100 p-6 md:p-8">
-                <div className="mb-3 text-gray-600">“{t.quote}”</div>
+              <div key={t.name} className="rounded-2xl border-2 border-gray-100 dark:border-gray-800 p-6 md:p-8">
+                <div className="mb-3 text-gray-600 dark:text-gray-300">“{t.quote}”</div>
                 <div className="text-sm text-gray-700 font-medium">— {t.name}, {t.role}</div>
               </div>
             ))}
@@ -410,7 +412,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 md:py-24 border-t-2 border-gray-100">
+      <section className="py-20 md:py-24 border-t-2 border-gray-100 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <h2 className="text-2xl md:text-3xl font-semibold mb-8">Frequently asked questions</h2>
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 text-sm text-gray-700 font-normal">
@@ -421,7 +423,7 @@ export default function Home() {
               { q: 'Do you have desktop apps?', a: 'The web app is optimized for all devices. Native apps are on our roadmap.' },
             ].map((f, idx) => (
               <div key={idx}>
-                <div className="text-black mb-1">{f.q}</div>
+                <div className="text-black dark:text-white mb-1">{f.q}</div>
                 <div className="text-gray-500">{f.a}</div>
               </div>
             ))}
@@ -430,25 +432,25 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 border-t-2 border-gray-100">
+      <section className="py-24 border-t-2 border-gray-100 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 md:px-8 text-center">
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Clear your digital desk.</h2>
-          <p className="text-gray-600 font-normal max-w-xl mx-auto mb-8">Join creators and teams who prefer calm software. Get started in less than a minute.</p>
+          <p className="text-gray-600 dark:text-gray-300 font-normal max-w-xl mx-auto mb-8">Join creators and teams who prefer calm software. Get started in less than a minute.</p>
           <Link href="/login">
-            <Button className="bg-black hover:bg-gray-900 text-white rounded-full px-8 py-3 font-medium">Create your account</Button>
+            <Button className="bg-black dark:bg-gray-900 hover:bg-gray-900 dark:hover:bg-gray-800 text-white rounded-full px-8 py-3 font-medium">Create your account</Button>
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t-2 border-gray-100 py-10">
+      <footer className="border-t-2 border-gray-100 dark:border-gray-800 py-10">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <span className="text-2xl font-bold cursive-font text-primary">FileNest</span>
-            <div className="flex items-center gap-6 text-sm text-gray-600 font-bold cursive-font">
-              <Link href="/privacy" className="hover:text-black transition-colors">Privacy</Link>
-              <Link href="/terms" className="hover:text-black transition-colors">Terms</Link>
-              <Link href="/contact" className="hover:text-black transition-colors">Contact</Link>
+            <div className="flex items-center gap-6 text-sm text-gray-600 dark:text-gray-300 font-bold cursive-font">
+              <Link href="/privacy" className="hover:text-black dark:text-white transition-colors">Privacy</Link>
+              <Link href="/terms" className="hover:text-black dark:text-white transition-colors">Terms</Link>
+              <Link href="/contact" className="hover:text-black dark:text-white transition-colors">Contact</Link>
               <span>© {new Date().getFullYear()}</span>
             </div>
           </div>

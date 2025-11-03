@@ -92,19 +92,19 @@ export default function StorageIndicator({ onStorageUpdate }: StorageIndicatorPr
   return (
     <div className="w-full">
       {/* Storage Usage Display */}
-      <div className="bg-white rounded-lg p-6 shadow-sm border">
+      <div className="bg-card text-card-foreground rounded-lg p-6 shadow-sm border">
         <div className="space-y-4">
           {/* Header */}
           <div className="text-center">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Storage Usage</h3>
-            <p className="text-lg text-gray-700 font-medium">
-              {storage.usage.formatted} of {storage.limit.formatted}
+            <h3 className="text-xl font-bold mb-2">Storage Usage</h3>
+            <p className="text-lg font-medium">
+              {(storage.usage.bytes / 1024 / 1024).toFixed(2)} MB of {(storage.limit.bytes / 1024 / 1024).toFixed(2)} MB
             </p>
           </div>
 
           {/* Storage Bar */}
           <div className="relative">
-            <div className="h-6 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+            <div className="h-6 bg-muted rounded-full overflow-hidden shadow-inner">
               <div
                 className="h-full rounded-full transition-all duration-500 ease-out shadow-sm"
                 style={{
@@ -122,16 +122,16 @@ export default function StorageIndicator({ onStorageUpdate }: StorageIndicatorPr
           {/* Details */}
           <div className="grid grid-cols-2 gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-gray-900">
+              <div className="text-2xl font-bold">
                 {(storage.usage.bytes / 1024 / 1024).toFixed(2)} MB
               </div>
-              <div className="text-sm text-gray-600">Used</div>
+              <div className="text-sm text-muted-foreground">Used</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900">
+              <div className="text-2xl font-bold">
                 {(storage.remaining.bytes / 1024 / 1024).toFixed(2)} MB
               </div>
-              <div className="text-sm text-gray-600">Remaining</div>
+              <div className="text-sm text-muted-foreground">Remaining</div>
             </div>
           </div>
 
