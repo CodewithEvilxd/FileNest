@@ -4,6 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import BackgroundSelector from "@/components/ui/background-selector";
 import {
   ArrowRight,
   CheckCircle2,
@@ -257,6 +258,9 @@ export default function Home() {
                 View pricing
               </Button>
             </a>
+            <div className="hidden sm:block">
+              <BackgroundSelector />
+            </div>
           </div>
           <div className="mt-6 flex items-center justify-center gap-6 text-xs md:text-sm text-gray-600 dark:text-gray-300 font-medium">
             <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> End-to-end privacy</div>

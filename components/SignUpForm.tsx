@@ -179,7 +179,26 @@ export default function SignUpForm() {
   // Verification form JSX
   if (state.verifying) {
     return (
-      <div className="mx-auto flex flex-col justify-center space-y-6 w-[350px]">
+      <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
+        <div className="flex flex-col space-y-4 text-center">
+          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500 via-blue-600 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-green-600 via-blue-600 to-purple-500 bg-clip-text text-transparent">
+              Verify Your Email
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300 font-medium">
+              We've sent a verification code to your email
+            </p>
+          </div>
+        </div>
+
+        <ErrorAlert error={state.verificationError} />
+
+        <div className="grid gap-6">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">
             Verify Your Email
@@ -232,23 +251,43 @@ export default function SignUpForm() {
           </form>
         </div>
 
-        <p className="px-8 text-center text-sm text-muted-foreground">
-          Didn't receive a code?{" "}
-          <button
-            onClick={handleResendCode}
-            className="hover:text-brand underline underline-offset-4"
-            disabled={state.isSubmitting}
-          >
-            Resend code
-          </button>
-        </p>
+          <p className="px-8 text-center text-sm text-muted-foreground">
+            Didn't receive a code?{" "}
+            <button
+              onClick={handleResendCode}
+              className="hover:text-brand underline underline-offset-4"
+              disabled={state.isSubmitting}
+            >
+              Resend code
+            </button>
+          </p>
+        </div>
       </div>
     );
   }
 
   // Main signup form JSX
   return (
-    <div className="mx-auto flex flex-col justify-center space-y-6 w-[350px]">
+    <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500">
+      <div className="flex flex-col space-y-4 text-center">
+        <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500 via-blue-600 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+          </svg>
+        </div>
+        <div className="space-y-2">
+          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-green-600 via-blue-600 to-purple-500 bg-clip-text text-transparent mb-2">
+            Create your account
+          </h1>
+          <p className="text-gray-600 dark:text-gray-300 font-medium text-lg">
+            Join FileNest and start storing securely
+          </p>
+        </div>
+      </div>
+
+      <ErrorAlert error={state.authError} />
+
+      <div className="grid gap-8">
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           Create your account
@@ -327,21 +366,22 @@ export default function SignUpForm() {
 
           <div id="clerk-captcha" className="mx-auto"></div>
           
-          <Button type="submit" className="w-full" disabled={state.isSubmitting}>
+          <Button type="submit" className="w-full h-14 bg-gradient-to-r from-green-600 via-blue-600 to-purple-500 hover:from-green-700 hover:via-blue-700 hover:to-purple-600 text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1" disabled={state.isSubmitting}>
             {state.isSubmitting && <LoadingSpinner className="mr-2" />}
             {state.isSubmitting ? "Creating account..." : "Create Account"}
           </Button>
         </form>
       </div>
 
-      <p className="px-8 text-center text-sm text-muted-foreground">
-        <Link
-          href="/sign-in"
-          className="hover:text-brand underline underline-offset-4"
-        >
-          Already have an account? Sign In
-        </Link>
-      </p>
+        <p className="px-8 text-center text-sm text-muted-foreground">
+          <Link
+            href="/sign-in"
+            className="hover:text-brand underline underline-offset-4"
+          >
+            Already have an account? Sign In
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

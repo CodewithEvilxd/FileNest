@@ -83,16 +83,16 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="mx-auto flex flex-col justify-center space-y-8 w-[400px] p-8 bg-white/80 backdrop-blur-xl rounded-2xl border border-gray-200 shadow-xl">
+    <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500">
       <div className="flex flex-col space-y-4 text-center">
-        <div className="mx-auto w-12 h-12 bg-linear-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-          <CloudUpload className="h-6 w-6 text-white" />
+        <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <CloudUpload className="h-8 w-8 text-white" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent mb-2">
             Welcome back
           </h1>
-          <p className="text-gray-600 font-medium">
+          <p className="text-gray-600 dark:text-gray-300 font-medium text-lg">
             Sign in to your FileNest account
           </p>
         </div>
@@ -150,7 +150,7 @@ export default function SignInForm() {
 
           <Button
             disabled={isSubmitting}
-            className="w-full h-12 bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            className="w-full h-14 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 hover:from-blue-700 hover:via-purple-700 hover:to-pink-600 text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1"
           >
             {isSubmitting && <LoadingSpinner className="mr-2" />}
             Sign in to FileNest
