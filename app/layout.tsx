@@ -30,11 +30,6 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
-          style={{
-            backgroundColor: "var(--background)",
-            backgroundImage: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99, 102, 241, 0.25), transparent 70%)",
-            backgroundAttachment: "fixed",
-          }}
         >
           <ThemeProvider
             attribute="class"

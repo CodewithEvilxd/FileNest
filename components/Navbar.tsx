@@ -1,12 +1,13 @@
 "use client";
 
 import { SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
-import { ChevronDown, CloudUpload, Menu, Moon, Sun, User, X } from "lucide-react";
+import { ChevronDown, CloudUpload, Menu, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
+import BackgroundSelector from "./ui/background-selector";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -158,19 +159,7 @@ export default function Navbar({ user }: NavbarProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-4 items-center">
-            {/* Dark Mode Toggle Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleDarkMode}
-              className="w-9 h-9 p-0"
-            >
-              {isDarkMode ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-            </Button>
+            <BackgroundSelector />
 
             {/* Show these buttons when user is signed out */}
             <SignedOut>

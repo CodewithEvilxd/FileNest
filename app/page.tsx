@@ -210,7 +210,6 @@ export default function Home() {
                   </Button>
                 </Link>
               </motion.div>
-              <ThemeToggle />
             </div>
             <div className="md:hidden">
               <motion.div whileTap={{ scale: 0.95 }}>
