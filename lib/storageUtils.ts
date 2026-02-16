@@ -1,5 +1,5 @@
 export const STORAGE_LIMIT_BYTES = 150 * 1024 * 1024; // 150MB
-export const MAX_FILE_SIZE_BYTES = 4 * 1024 * 1024; // 4MB per file (Vercel free tier limit)
+export const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB per file
 
 
 export function formatBytes(bytes: number, decimals: number = 2): string {
