@@ -86,6 +86,7 @@ async function getUserStorageUsage(userId: string): Promise<number> {
 // Configure route for larger file uploads
 export const maxDuration = 60; // 60 seconds for serverless functions
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   try {
