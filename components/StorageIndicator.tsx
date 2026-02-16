@@ -58,7 +58,7 @@ export default function StorageIndicator({ onStorageUpdate }: StorageIndicatorPr
   if (loading) {
     return (
       <div className="w-full max-w-md mx-auto">
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
           <div className="space-y-4">
             <div className="text-sm text-gray-300 font-medium">Storage Usage</div>
             <div className="h-3 bg-gray-700/50 rounded-full overflow-hidden shadow-inner">
@@ -74,7 +74,7 @@ export default function StorageIndicator({ onStorageUpdate }: StorageIndicatorPr
     console.log('No storage data available');
     return (
       <div className="w-full max-w-md mx-auto">
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
           <div className="space-y-4">
             <div className="text-sm text-gray-300 font-medium">Storage Usage</div>
             <div className="h-3 bg-gray-700/50 rounded-full overflow-hidden shadow-inner">

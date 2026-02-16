@@ -4,18 +4,18 @@ import { Button } from "@/components/ui/button";
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm">
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex justify-between items-center h-16 md:h-20">
             <Link href="/" className="flex items-center gap-3">
               <div className="relative">
-                <div className="h-7 w-7 md:h-8 md:w-8 bg-linear-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                <div className="h-7 w-7 md:h-8 md:w-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">F</span>
                 </div>
               </div>
-              <span className="text-xl md:text-2xl tracking-wide font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-xl md:text-2xl tracking-wide font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 FileNest
               </span>
             </Link>

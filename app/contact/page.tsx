@@ -82,14 +82,14 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-12 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-linear-to-r from-blue-600 to-purple-600 rounded-full mb-6 shadow-lg">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6 shadow-lg">
             <MessageSquare className="h-10 w-10 text-white" />
           </div>
-          <h1 className="text-5xl font-bold bg-linear-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
             Get In Touch
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -100,7 +100,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
           {/* Contact Information Cards */}
           <div className="lg:col-span-1 space-y-6">
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-white">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4">
                   <div className="shrink-0">
@@ -121,10 +121,10 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="border-0 shadow-xl bg-white/90 backdrop-blur-sm">
+            <Card className="border-0 shadow-xl bg-white">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-3 text-2xl">
-                  <div className="w-8 h-8 bg-linear-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                     <Send className="h-4 w-4 text-white" />
                   </div>
                   Send us a message
@@ -198,7 +198,7 @@ export default function Contact() {
 
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
+                    className="w-full h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-lg"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -221,7 +221,7 @@ export default function Contact() {
 
         {/* Footer Note */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm">
+          <div className="inline-flex items-center gap-2 bg-white rounded-full px-6 py-3 shadow-sm">
             <CheckCircle className="h-5 w-5 text-green-600" />
             <p className="text-gray-700 font-medium">
               We typically respond within 24 hours. For urgent matters, please call us directly.

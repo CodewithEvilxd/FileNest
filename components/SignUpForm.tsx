@@ -179,7 +179,7 @@ export default function SignUpForm() {
   // Verification form JSX
   if (state.verifying) {
     return (
-      <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
+      <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white dark:bg-gray-900 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl">
         <div className="flex flex-col space-y-4 text-center">
           <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500 via-blue-600 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -268,7 +268,7 @@ export default function SignUpForm() {
 
   // Main signup form JSX
   return (
-    <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500">
+    <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white dark:bg-gray-900 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl hover:shadow-3xl transition-all duration-500">
       <div className="flex flex-col space-y-4 text-center">
         <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500 via-blue-600 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

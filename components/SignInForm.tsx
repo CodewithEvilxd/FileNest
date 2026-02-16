@@ -83,7 +83,7 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500">
+    <div className="mx-auto flex flex-col justify-center space-y-8 w-[420px] p-10 bg-white dark:bg-gray-900 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-2xl hover:shadow-3xl transition-all duration-500">
       <div className="flex flex-col space-y-4 text-center">
         <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CloudUpload className="h-8 w-8 text-white" />
