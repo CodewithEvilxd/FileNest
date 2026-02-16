@@ -1,6 +1,5 @@
 import SignUpForm from '@/components/SignUpForm'
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-import BackgroundSelector from "@/components/ui/background-selector";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 function page() {
   return (
@@ -25,8 +24,7 @@ function page() {
           </span>
         </div>
         <div className="flex items-center gap-4">
-          <BackgroundSelector />
-          <ThemeToggle />
+          <AnimatedThemeToggler />
         </div>
       </nav>
 

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { db } from "@/database/drizzleClient";
 import { files } from "@/database/schema";
-import { STORAGE_LIMIT_BYTES, formatBytes, wouldExceedLimit } from "@/lib/storageUtils";
+import { STORAGE_LIMIT_BYTES, MAX_FILE_SIZE_BYTES, formatBytes, wouldExceedLimit } from "@/lib/storageUtils";
 import { and, eq, sum } from "drizzle-orm";
 import ImageKit from "imagekit";
 // import { v2 as cloudinary } from "cloudinary"; // Uncomment after installing: npm install cloudinary
@@ -83,6 +83,10 @@ async function getUserStorageUsage(userId: string): Promise<number> {
   return result[0]?.totalSize ? Number(result[0].totalSize) : 0;
 }
 
+// Configure route for larger file uploads
+export const maxDuration = 60; // 60 seconds for serverless functions
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const { userId } = await auth();
@@ -101,6 +105,18 @@ export async function POST(request: NextRequest) {
 
     if (!file) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
+    }
+
+    // Check individual file size limit
+    if (file.size > MAX_FILE_SIZE_BYTES) {
+      return NextResponse.json(
+        {
+          error: `File too large. Maximum file size is ${formatBytes(MAX_FILE_SIZE_BYTES)}. Your file is ${formatBytes(file.size)}.`,
+          maxFileSize: MAX_FILE_SIZE_BYTES,
+          fileSize: file.size
+        },
+        { status: 413 }
+      );
     }
 
     let currentUsage: number;

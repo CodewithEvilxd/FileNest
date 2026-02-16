@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
+import { MAX_FILE_SIZE_BYTES, formatBytes } from "@/lib/storageUtils";
 
 interface UseFileUploadProps {
   userId: string;
@@ -26,10 +27,21 @@ export function useFileUpload({ userId, currentFolder, onUploadSuccess }: UseFil
     const fileInputRef = useRef<HTMLInputElement>(null);
 
   const validateFileSize = (selectedFile: File): boolean => {
-    if (storageUsage && storageUsage.remaining.bytes < selectedFile.size) {
-      const errorMessage = `File too large. You have ${storageUsage.remaining.formatted} remaining, but this file is ${(selectedFile.size / (1024 * 1024)).toFixed(2)}MB.`;
+    // Check individual file size limit first
+    if (selectedFile.size > MAX_FILE_SIZE_BYTES) {
+      const errorMessage = `File exceeds maximum size limit of ${formatBytes(MAX_FILE_SIZE_BYTES)}. Your file is ${formatBytes(selectedFile.size)}.`;
       setError(errorMessage);
       toast.error("File Too Large", {
+        description: `Maximum file size is ${formatBytes(MAX_FILE_SIZE_BYTES)}. Please choose a smaller file.`,
+      });
+      return false;
+    }
+
+    // Check if it would exceed storage quota
+    if (storageUsage && storageUsage.remaining.bytes < selectedFile.size) {
+      const errorMessage = `File too large. You have ${storageUsage.remaining.formatted} remaining, but this file is ${formatBytes(selectedFile.size)}.`;
+      setError(errorMessage);
+      toast.error("Storage Limit Exceeded", {
         description: `This file would exceed your storage limit. You have ${storageUsage.remaining.formatted} remaining.`,
       });
       return false;
@@ -113,15 +125,30 @@ export function useFileUpload({ userId, currentFolder, onUploadSuccess }: UseFil
         onUploadSuccess();
       }
     } catch (error: any) {
+      console.error("Upload error:", error);
 
       // Handle storage limit error specifically
       if (error.response?.status === 413) {
-        const errorMessage = error.response.data?.error || "Storage limit exceeded";
+        const errorMessage = error.response.data?.error || "File too large or storage limit exceeded";
         setError(errorMessage);
-        toast.error("Storage Limit Exceeded", {
+        toast.error("File Too Large", {
           description: errorMessage,
         });
+      } else if (error.response?.data?.error) {
+        // Handle other server errors with error message
+        const errorMessage = error.response.data.error;
+        setError(errorMessage);
+        toast.error("Upload Failed", {
+          description: errorMessage,
+        });
+      } else if (error.message) {
+        // Handle network or other errors
+        setError(error.message);
+        toast.error("Upload Failed", {
+          description: "Network error. Please check your connection and try again.",
+        });
       } else {
+        // Fallback error
         setError("Failed to upload file. Please try again.");
         toast.error("Upload Failed", {
           description: "We couldn't upload your file. Please try again.",

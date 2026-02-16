@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-import BackgroundSelector from "./ui/background-selector";
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -159,8 +159,9 @@ export default function Navbar({ user }: NavbarProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-4 items-center">
-            <BackgroundSelector />
-
+            {/* Theme Toggle - First item */}
+            <AnimatedThemeToggler />
+            
             {/* Show these buttons when user is signed out */}
             <SignedOut>
               <Link href="/sign-in">
@@ -226,10 +227,12 @@ export default function Navbar({ user }: NavbarProps) {
                 </DropdownMenu>
               </div>
             </SignedIn>
+
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
+            <AnimatedThemeToggler />
             <button
               className="z-50 p-2"
               onClick={toggleMobileMenu}

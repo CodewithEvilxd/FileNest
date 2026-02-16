@@ -3,8 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-import BackgroundSelector from "@/components/ui/background-selector";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import {
   ArrowRight,
   CheckCircle2,
@@ -22,141 +21,11 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import * as THREE from "three";
 
 export default function Home() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!canvasRef.current) return;
-
-    // Three.js setup
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    // Create floating particles
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 100;
-    const positions = new Float32Array(particlesCount * 3);
-
-    for (let i = 0; i < particlesCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 20;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const particlesMaterial = new THREE.PointsMaterial({
-      color: 0x3b82f6,
-      size: 0.02,
-      transparent: true,
-      opacity: 0.6,
-    });
-
-    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particles);
-
-    camera.position.z = 5;
-
-    // Animation loop
-    const animate = () => {
-      requestAnimationFrame(animate);
-      particles.rotation.x += 0.001;
-      particles.rotation.y += 0.002;
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    // GSAP animations with proper targeting
-    const tl = gsap.timeline();
-
-    // Wait for DOM to be ready and elements to exist
-    const checkElements = () => {
-      const title = document.querySelector('.hero-title');
-      const subtitle = document.querySelector('.hero-subtitle');
-      const buttons = document.querySelector('.hero-buttons');
-      const features = document.querySelector('.hero-features');
-
-      if (title && subtitle && buttons && features) {
-        tl.fromTo(title, {
-          opacity: 0,
-          y: 50,
-          scale: 0.8
-        }, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: "power3.out"
-        })
-        .fromTo(subtitle, {
-          opacity: 0,
-          y: 30
-        }, {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out"
-        }, "-=0.8")
-        .fromTo(buttons, {
-          opacity: 0,
-          y: 20
-        }, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out"
-        }, "-=0.6")
-        .fromTo(features, {
-          opacity: 0,
-          y: 20
-        }, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out"
-        }, "-=0.4");
-      } else {
-        // Retry after a short delay if elements not found
-        setTimeout(checkElements, 50);
-      }
-    };
-
-    setTimeout(checkElements, 100);
-
-    // Mouse interaction
-    const handleMouseMove = (event: MouseEvent) => {
-      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-
-      gsap.to(particles.rotation, {
-        x: mouseY * 0.1,
-        y: mouseX * 0.1,
-        duration: 0.5,
-        ease: "power2.out"
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      renderer.dispose();
-    };
-  }, []);
 
   return (
     <div className="relative">
-      {/* Three.js Canvas Background */}
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{ mixBlendMode: 'multiply' }}
-      />
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-slate-700 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -175,7 +44,7 @@ export default function Home() {
                   transition={{ duration: 2, repeat: Infinity }}
                 />
               </div>
-              <span className="text-xl md:text-2xl tracking-wide font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-xl md:text-2xl tracking-wide font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 FileNest
               </span>
             </motion.div>
@@ -204,18 +73,20 @@ export default function Home() {
                 Security
                 <span className="absolute -bottom-1 left-0 w-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
               </motion.a>
+              <AnimatedThemeToggler />
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link href="/sign-in">
-                  <Button className="bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6 py-2 text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6 py-2 text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300">
                     Get started
                   </Button>
                 </Link>
               </motion.div>
             </div>
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center gap-3">
+              <AnimatedThemeToggler />
               <motion.div whileTap={{ scale: 0.95 }}>
                 <Link href="/sign-in">
-                  <Button className="bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-4 py-2 text-xs font-medium shadow-lg">
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-4 py-2 text-xs font-medium shadow-lg">
                     Start
                   </Button>
                 </Link>
@@ -228,7 +99,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative pt-20 md:pt-28 pb-16 md:pb-24">
         <div className="absolute inset-0 pointer-events-none select-none">
-          <div className="mx-auto max-w-6xl h-px bg-linear-to-r from-transparent via-gray-200 to-transparent" />
+          <div className="mx-auto max-w-6xl h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
         </div>
         <div className="max-w-6xl mx-auto px-6 md:px-8 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border-2 border-gray-200 dark:border-gray-700 px-3 py-1 text-xs md:text-sm font-medium text-gray-600 dark:text-gray-300 mb-6">
@@ -236,7 +107,7 @@ export default function Home() {
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-none tracking-tight mb-6">
             Store, share, and{" "}
-            <span className="bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent" style={{fontFamily: 'cursive'}}>
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent" style={{fontFamily: 'cursive'}}>
               collaborate
             </span>
             <br className="hidden md:block" />
@@ -258,9 +129,6 @@ export default function Home() {
                 View pricing
               </Button>
             </a>
-            <div className="hidden sm:block">
-              <BackgroundSelector />
-            </div>
           </div>
           <div className="mt-6 flex items-center justify-center gap-6 text-xs md:text-sm text-gray-600 dark:text-gray-300 font-medium">
             <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> End-to-end privacy</div>

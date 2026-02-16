@@ -197,3 +197,10 @@
 .light p, .light span, .light div {
   text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
 }
+
+/* Animated Theme Toggler View Transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
